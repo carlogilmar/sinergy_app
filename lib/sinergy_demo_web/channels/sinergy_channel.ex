@@ -1,9 +1,10 @@
 defmodule SinergyDemoWeb.SinergyChannel do
   use Phoenix.Channel
+	alias SinergyDemo.Director
 
   def join("sinergy:app", _msg, socket) do
-    IO.puts "Socket ok"
-    {:ok, %{}, socket}
+		{_, song} = Director.suscribe()
+    {:ok, song, socket}
   end
 
 end

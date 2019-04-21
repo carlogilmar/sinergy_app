@@ -6,12 +6,11 @@ defmodule SinergyDemo.Application do
   use Application
 
   def start(_type, _args) do
+    import Supervisor.Spec
     # List all child processes to be supervised
     children = [
-      # Start the endpoint when the application starts
-      SinergyDemoWeb.Endpoint
-      # Starts a worker by calling: SinergyDemo.Worker.start_link(arg)
-      # {SinergyDemo.Worker, arg},
+      supervisor(SinergyDemoWeb.Endpoint, []),
+      supervisor(SinergyDemo.Director, [])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
