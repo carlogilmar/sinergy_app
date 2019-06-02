@@ -67,9 +67,18 @@ defmodule SinergyDemo.Utils do
 	def build_network_from_data(view_data) do
 		stations =
 			for [service_time, servers, external_flow, process_route] <- view_data["data"] do
+				service_time = parse_number(service_time)
+				servers = String.to_integer(servers)
+				external_flow = parse_number(external_flow)
+				process_route = parse_process_route(process_route)
 				%Station{service_time: service_time, servers: servers, external_flow: external_flow, process_route: process_route}
 			end
 		%Network{stations: stations}
 	end
+
+	defp parse_number(0), do: 0
+	defp parse_number("0"), do: 0
+	defp parse_number(float), do: String.to_float(float)
+	defp parse_process_route(process_route), do: for e <- process_route, do: parse_number(e)
 
 end
