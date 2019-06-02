@@ -11,8 +11,8 @@ defmodule SinergyDemoWeb.SinergyChannel do
       view_data
         |> Utils.build_network_from_data()
         |> Utils.process_network()
-		IO.inspect network
-    {:reply, {:ok, %{ message: "que onda perro!"}}, socket}
+				|> Utils.send_to_view()
+    {:reply, {:ok, network}, socket}
   end
 
 end

@@ -81,4 +81,22 @@ defmodule SinergyDemo.Utils do
 	defp parse_number(float), do: String.to_float(float)
 	defp parse_process_route(process_route), do: for e <- process_route, do: parse_number(e)
 
+	def send_to_view(network) do
+		stations =
+			for station <- network.stations do
+				%{
+					service_time: station.service_time,
+					servers: station.servers,
+					process_route: station.process_route,
+					external_flow: station.external_flow,
+					total_flow: station.total_flow,
+					congestion: station.congestion,
+					stability: station.stability,
+					cycle_time: station.cycle_time,
+					wip: station.wip
+				}
+			end
+		%{stations: stations, total_wip: network.total_wip, total_cycle_time: network.total_cycle_time}
+	end
+
 end
