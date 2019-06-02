@@ -1,10 +1,44 @@
 <div id="app">
 	<section class="jumbotron text-center">
 		<div class="container text-center">
-			<h1 class="jumbotron-heading">{{melody_letter}}</h1>
+			<h1 class="jumbotron-heading">M/M/C: (GD/inf/inf) </h1>
+			<h2> Servidores en paralelos identicos </h2>
 			<small> <b>Conexión:</b> {{message}} </small>
-			<p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
 			<p>
+
+			<div class="form-group" v-if="stations_key == false" >
+				<label for="exampleSelect1">Selecciona el número de estaciones a calcular:</label>
+				<select class="form-control" v-model="stations">
+					<option>0</option>
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+					<option>6</option>
+					<option>7</option>
+					<option>8</option>
+					<option>9</option>
+					<option>10</option>
+				</select>
+				&nbsp;
+				<button v-on:click="start_process" class="btn btn-sm btn-primary"> Iniciar procesamiento de {{stations}} estaciones </button>
+			</div>
+
+			<div v-if="stations_key">
+				<h1 class="jumbotron-heading">Paso 1 </h1>
+				<h3> Recopilando información de {{stations}} estaciones </h3>
+
+				<div class="row">
+					<div class="col-sm"> <strong> Número de servidores </strong> &nbsp;&nbsp; </div>
+					<div class="col-sm"> <input type="number" class="form-control"> </div>
+				</div>
+
+			</div>
+
+
 		</div>
 	</section>
+
+
 </div>

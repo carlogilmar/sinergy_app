@@ -3,8 +3,7 @@ defmodule SinergyDemoWeb.SinergyChannel do
 	alias SinergyDemo.Director
 
   def join("sinergy:app", _msg, socket) do
-		{_, song} = Director.suscribe()
-    {:ok, song, socket}
+    {:ok, [], socket}
   end
 
 end
