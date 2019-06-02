@@ -38,6 +38,22 @@ defmodule UtilTest do
     assert network.stations != []
   end
 
+  test "run a flow" do
+    view_data = %{ "data" => [
+      [1, 0.2, 0.1, [0.23, 0, 0.23, 0, 0.92]],
+      [1, 0.2, 0.1, [0.12, 0, 0.23, 0, 0.92]],
+      [1, 0.3, 0.1, [0.11, 0, 0.23, 0, 0.92]],
+      [1, 0.3, 0.1, [0.11, 0, 0.23, 0, 0.92]],
+      [1, 0.4, 0.1, [0.11, 0, 0.23, 0, 0.92]] ] }
+    network =
+      view_data
+        |> Utils.build_network_from_data()
+        |> Utils.process_network()
+IO.inspect network
+    assert network.total_wip != nil
+    assert network.total_cycle_time != nil
+  end
+
   defp get_fake_starter_network() do
     station_1 = %Station{ service_time: 0.56, servers: 3, process_route: [0, 0.4, 0.2], external_flow: 0.5 }
     station_2 = %Station{ service_time: 0.56, servers: 3, process_route: [0, 0.4, 0.2], external_flow: 0.5 }
