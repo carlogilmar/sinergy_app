@@ -54,6 +54,7 @@
 
 			<div v-if="results_key">
 				<h2 class="jumbotron-heading"> Procesando resultados... </h2>
+				<button v-on:click="process" class="btn btn-sm btn-primary"> Procesar </button>
 			</div>
 
 	</section>

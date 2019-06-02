@@ -43,6 +43,14 @@ export const app = new Vue({
 				alert("Elige un número mayor a cero.");
 			}
 		},
+		process: function(){
+			console.log("Enviando datos");
+      this.channel.push("sinergy:calculate", {msg: "me ves perrito"})
+        .receive('ok', (res) => {
+					console.log("El channel respondió!!");
+					console.log(res);
+      });
+		},
 		store_station: function(){
 			this.station_for_store = new Map();
 			this.station_for_store.set("service_time", this.service_time);

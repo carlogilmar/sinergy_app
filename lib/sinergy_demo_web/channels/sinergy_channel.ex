@@ -6,4 +6,11 @@ defmodule SinergyDemoWeb.SinergyChannel do
     {:ok, [], socket}
   end
 
+  def handle_in("sinergy:calculate", payload, socket) do
+		IO.puts "=========="
+		IO.inspect payload
+		IO.puts "=========="
+    {:reply, {:ok, %{ message: "que onda perro!"}}, socket}
+  end
+
 end
