@@ -10,6 +10,7 @@ export const app = new Vue({
 		sound: null,
 		stations: 0,
 		stations_key: false,
+		results_key: false,
 		process_route: [],
 		process_route_values: [],
 		current_station: 1,
@@ -49,11 +50,13 @@ export const app = new Vue({
 			this.station_for_store.set("external_flow", this.external_flow);
 			this.station_for_store.set("process_route", this.process_route_values);
 			this.stations_in_network.push(this.station_for_store)
-			alert("Agregada");
 			if(this.current_station == this.stations){
-				alert("Se acabó");
+				this.stations_key = false;
+				this.results_key = true;
+				alert("Se ingresaron los datos suficientes.");
+				console.log(this.stations_in_network);
 			} else {
-				alert("Continuamosss");
+				alert("Se agregó con éxito 😎");
 				this.current_station = this.current_station+1;
 				this.service_time = 0;
 				this.servers = 0;

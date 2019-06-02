@@ -6,7 +6,7 @@
 			<small> <b>Conexión:</b> {{message}} </small>
 			<p>
 
-			<div class="form-group" v-if="stations_key == false" >
+			<div class="form-group" v-if="stations_key == false && results_key == false">
 				<label for="exampleSelect1">Selecciona el número de estaciones a calcular:</label>
 				<select class="form-control" v-model="stations">
 					<option>0</option>
@@ -27,7 +27,6 @@
 
 			<div v-if="stations_key">
 				<h2 class="jumbotron-heading">Estación {{current_station}} </h2>
-
 				<div class="row">
 					<div class="col-sm"> <strong> Tiempo de servicio </strong> &nbsp;&nbsp; </div>
 					<div class="col-sm"> <input type="number" class="form-control" v-model="service_time"> </div>
@@ -50,8 +49,13 @@
 				</div>
 				<button v-on:click="store_station" class="btn btn-sm btn-primary"> Agregar estación </button>
 			</div>
-
 		</div>
+
+
+			<div v-if="results_key">
+				<h2 class="jumbotron-heading"> Procesando resultados... </h2>
+			</div>
+
 	</section>
 
 </div>
