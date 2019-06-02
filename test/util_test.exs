@@ -49,7 +49,6 @@ defmodule UtilTest do
       view_data
         |> Utils.build_network_from_data()
         |> Utils.process_network()
-IO.inspect network
     assert network.total_wip != nil
     assert network.total_cycle_time != nil
   end
