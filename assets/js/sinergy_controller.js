@@ -17,8 +17,7 @@ export const app = new Vue({
 		service_time: 0,
 		servers: 0,
 		external_flow: 0,
-		stations_in_network: [],
-		station_for_store: null
+		stations_in_network: []
 	},
 	created: function() {
 		console.log("Trying to connect socket implementation...");
@@ -45,24 +44,19 @@ export const app = new Vue({
 		},
 		process: function(){
 			console.log("Enviando datos");
-      this.channel.push("sinergy:calculate", {msg: "me ves perrito"})
+			console.log(this.stations_in_network);
+      this.channel.push("sinergy:calculate", {data: this.stations_in_network})
         .receive('ok', (res) => {
 					console.log("El channel respondió!!");
 					console.log(res);
       });
 		},
 		store_station: function(){
-			this.station_for_store = new Map();
-			this.station_for_store.set("service_time", this.service_time);
-			this.station_for_store.set("servers", this.servers);
-			this.station_for_store.set("external_flow", this.external_flow);
-			this.station_for_store.set("process_route", this.process_route_values);
-			this.stations_in_network.push(this.station_for_store)
+			this.stations_in_network.push([this.service_time, this.servers, this.external_flow, this.process_route_values])
 			if(this.current_station == this.stations){
 				this.stations_key = false;
 				this.results_key = true;
 				alert("Se ingresaron los datos suficientes.");
-				console.log(this.stations_in_network);
 			} else {
 				alert("Se agregó con éxito 😎");
 				this.current_station = this.current_station+1;
