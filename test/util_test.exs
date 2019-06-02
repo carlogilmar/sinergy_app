@@ -27,6 +27,17 @@ defmodule UtilTest do
     assert calculated_network.total_cycle_time != nil
 	end
 
+  test "get a network from view" do
+    view_data = %{ "data" => [
+      [0, 0, 0, [0, 0, 0, 0, 0]],
+      [0, 0, 0, [0, 0, 0, 0, 0]],
+      [0, 0, 0, [0, 0, 0, 0, 0]],
+      [0, 0, 0, [0, 0, 0, 0, 0]],
+      [0, 0, 0, [0, 0, 0, 0, 0]] ] }
+    network = Utils.build_network_from_data(view_data)
+    assert network.stations != []
+  end
+
   defp get_fake_starter_network() do
     station_1 = %Station{ service_time: 0.56, servers: 3, process_route: [0, 0.4, 0.2], external_flow: 0.5 }
     station_2 = %Station{ service_time: 0.56, servers: 3, process_route: [0, 0.4, 0.2], external_flow: 0.5 }

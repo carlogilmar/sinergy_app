@@ -1,4 +1,6 @@
 defmodule SinergyDemo.Utils do
+	alias SinergyDemo.Station
+	alias SinergyDemo.Network
 
   def process_network(network) do
     network
@@ -61,5 +63,13 @@ defmodule SinergyDemo.Utils do
       end
     %{network | stations: stations_updated}
   end
+
+	def build_network_from_data(view_data) do
+		stations =
+			for [service_time, servers, external_flow, process_route] <- view_data["data"] do
+				%Station{service_time: service_time, servers: servers, external_flow: external_flow, process_route: process_route}
+			end
+		%Network{stations: stations}
+	end
 
 end
