@@ -26,7 +26,7 @@
 			</div>
 
 			<div v-if="stations_key">
-				<h1 class="jumbotron-heading">Estación {{current_station}} </h1>
+				<h2 class="jumbotron-heading">Estación {{current_station}} </h2>
 
 				<div class="row">
 					<div class="col-sm"> <strong> Tiempo de servicio </strong> &nbsp;&nbsp; </div>
@@ -41,16 +41,15 @@
 					<div class="col-sm"> <input type="number" class="form-control" v-model="external_flow"> </div>
 				</div>
 				<div class="row">
-					<div class="col-sm"> <strong> R&nbsp;U&nbsp;T&nbsp;A&nbsp;&nbsp;D&nbsp;E&nbsp;L&nbsp;&nbsp;P&nbsp;R&nbsp;O&nbsp;C&nbsp;E&nbsp;S&nbsp;O </strong> &nbsp;&nbsp; Estaciones: {{stations}} </div>
+					<div class="col-sm"> <strong> R&nbsp;U&nbsp;T&nbsp;A&nbsp;&nbsp;D&nbsp;E&nbsp;L&nbsp;&nbsp;P&nbsp;R&nbsp;O&nbsp;C&nbsp;E&nbsp;S&nbsp;O </strong> &nbsp;&nbsp; <small>Estaciones: {{stations}}</small> </div>
 				</div>
 				<br>
 				<div class="row" v-for="n in process_route">
-					<div class="col-sm"> Estación {{n}} &nbsp;&nbsp; </div>
-					<div class="col-sm"> <input type="number" class="form-control"> </div>
+					<div class="col-sm"> Estación {{n+1}} &nbsp;&nbsp; </div>
+					<div class="col-sm"> <input type="number" class="form-control" v-model="process_route_values[n]"> </div>
 				</div>
-				<button class="btn btn-sm btn-primary"> Agregar estación </button>
+				<button v-on:click="store_station" class="btn btn-sm btn-primary"> Agregar estación </button>
 			</div>
-
 
 		</div>
 	</section>

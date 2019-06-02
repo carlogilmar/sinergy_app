@@ -11,7 +11,12 @@ export const app = new Vue({
 		stations: 0,
 		stations_key: false,
 		process_route: [],
-		current_station: 1
+		process_route_values: [],
+		current_station: 1,
+		service_time: 0,
+		servers: 0,
+		external_flow: 0,
+		stations_in_network: []
 	},
 	created: function() {
 		console.log("Trying to connect socket implementation...");
@@ -31,10 +36,14 @@ export const app = new Vue({
 			if(this.stations>0){
 				this.stations_key = true;
 				// Inicializando la ruta del proceso
-				for (this.i = 0; this.i < this.stations; this.i++){ this.process_route.push(this.i+1) }
+				for (this.i = 0; this.i < this.stations; this.i++){ this.process_route.push(this.i); this.process_route_values.push(0) }
 			} else {
 				alert("Elige un número mayor a cero.");
 			}
+		},
+		store_station: function(){
+
+		alert("Guardando!");
 		}
 	}
 });
