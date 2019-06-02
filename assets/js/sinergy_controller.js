@@ -11,13 +11,15 @@ export const app = new Vue({
 		stations: 0,
 		stations_key: false,
 		results_key: false,
+		calculation_key: false,
 		process_route: [],
 		process_route_values: [],
 		current_station: 1,
 		service_time: 0,
 		servers: 0,
 		external_flow: 0,
-		stations_in_network: []
+		stations_in_network: [],
+		calculation: null
 	},
 	created: function() {
 		console.log("Trying to connect socket implementation...");
@@ -46,9 +48,12 @@ export const app = new Vue({
 			console.log("Enviando datos");
 			console.log(this.stations_in_network);
       this.channel.push("sinergy:calculate", {data: this.stations_in_network})
-        .receive('ok', (res) => {
-					console.log("El channel respondió!!");
-					console.log(res);
+        .receive('ok', (calculation) => {
+					console.log("DONE!");
+					console.log(calculation);
+					this.results_key = false;
+					this.calculation_key = true;
+					this.calculation = calculation;
       });
 		},
 		store_station: function(){
