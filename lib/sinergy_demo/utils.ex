@@ -68,7 +68,7 @@ defmodule SinergyDemo.Utils do
 		stations =
 			for [service_time, servers, external_flow, process_route] <- view_data["data"] do
 				service_time = parse_number(service_time)
-				servers = String.to_integer(servers)
+				servers = parse_number(servers)
 				external_flow = parse_number(external_flow)
 				process_route = parse_process_route(process_route)
 				%Station{service_time: service_time, servers: servers, external_flow: external_flow, process_route: process_route}
@@ -76,9 +76,14 @@ defmodule SinergyDemo.Utils do
 		%Network{stations: stations}
 	end
 
-	defp parse_number(0), do: 0
-	defp parse_number("0"), do: 0
-	defp parse_number(float), do: String.to_float(float)
+  def parse_number(number) do
+    parsing = fn
+      true -> String.to_float(number)
+      false -> String.to_integer(number)
+    end
+    parsing.(String.contains?(number, "."))
+  end
+
 	defp parse_process_route(process_route), do: for e <- process_route, do: parse_number(e)
 
 	def send_to_view(network) do
