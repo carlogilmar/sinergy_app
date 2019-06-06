@@ -2,8 +2,15 @@
 	<section class="jumbotron text-center">
 		<div class="container text-center">
 			<strong> V E R S I Ó N B E T A </strong>
+      <p>
+      <strong> Integrantes del equipo </strong>
+      <br>- García Arrendondo Juan Alberto
+      <br>- Morales Méndez Luis Rubén
+      <br>- Rivera Velázquez Diana Belén
+      <br>Desarrollador: <a href="https://twitter.com/CarloGilmar">Carlo Gilmar</a>
+      </p>
 			<h1 class="jumbotron-heading">M/M/C: (GD/inf/inf) </h1>
-			<h2> Servidores en paralelos identicos </h2>
+			<h2> Servidores en paralelos idénticos </h2>
 			<small> <b>Conexión:</b> {{message}} </small>
 			<p>
 
