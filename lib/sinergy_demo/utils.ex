@@ -76,6 +76,8 @@ defmodule SinergyDemo.Utils do
 		%Network{stations: stations}
 	end
 
+  def parse_number(0), do: 0
+  def parse_number("0"), do: 0
   def parse_number(number) do
     parsing = fn
       true -> String.to_float(number)
