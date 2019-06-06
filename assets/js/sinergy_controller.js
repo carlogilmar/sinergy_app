@@ -19,6 +19,7 @@ export const app = new Vue({
 		servers: 0,
 		external_flow: 0,
 		stations_in_network: [],
+    js_state: [],
 		calculation: null
 	},
 	created: function() {
@@ -57,7 +58,10 @@ export const app = new Vue({
       });
 		},
 		store_station: function(){
-			this.stations_in_network.push([this.service_time, this.servers, this.external_flow, this.process_route_values])
+      const p = this.process_route_values;
+      for(this.i=0; this.i<p.length; this.i++){this.js_state.push((p[this.i]))}
+			this.stations_in_network.push([this.service_time, this.servers, this.external_flow, this.js_state])
+      this.js_state = [];
 			if(this.current_station == this.stations){
 				this.stations_key = false;
 				this.results_key = true;
